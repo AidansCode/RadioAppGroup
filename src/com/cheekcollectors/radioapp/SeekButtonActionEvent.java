@@ -1,25 +1,28 @@
 package com.cheekcollectors.radioapp;
 
+import com.cheekcollectors.radioapp.radio.Radio;
+import com.cheekcollectors.radioapp.radio.SeekDirection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class SeekButtonActionEvent implements EventHandler<ActionEvent> {
     private SeekDirection seek; //creates new private seek
     public SeekButtonActionEvent(SeekDirection seek) {
-        this.seekDirection = seek;
+        this.SeekDirection = seek;
     }
-    public void handler(ActionEvent event){
-        Radio radio = RadioApp.getRadio();
-        if(seekDirection == seek.FORWARD){ /*if the seek Forward button is selected the
+    public void handle(ActionEvent event){
+        Radio radio = RadioAppGUI.getRadio();
+        if(SeekDirection == SeekDirection.UP){ /*if the seek Forward button is selected the
             radio frequency will increase by .2 if FM is selected
             and 10 if am is selected*/
-            radio.seekUp();
+            radio.seekForward();
         } else { /*if the seek back button is selected the
             radio frequency will decrease by .2 if FM is selected
             and 10 if am is selected*/
-            radio.seekDown();
+            radio.seekBack();
         }
-        RadioApp.updateStatus(radio.getStatusString()); //this line updates the status
+        RadioAppGUI.updateStatus(radio.getStatusString()); //this line updates the status
         //of the button
     }
+
 }
