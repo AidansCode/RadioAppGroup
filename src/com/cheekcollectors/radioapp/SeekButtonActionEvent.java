@@ -17,7 +17,7 @@ public class SeekButtonActionEvent implements EventHandler<ActionEvent> {
             and 10 if am is selected*/
             radio.seekForward();
         } else { /*if the seek back button is selected the
-            radio frequency will decrease by .2 if FM is selected
+            radio frequ/ency will decrease by .2 if FM is selected
             and 10 if am is selected*/
             radio.seekBack();
         }
