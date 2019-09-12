@@ -63,5 +63,6 @@ public class RadioAppGUI extends Application {
         Button setToggleButton = new Button("SET");
         Button seekBackButton = new Button("<<"); Button seekForwardButton = new Button(">>");
         Button powerButton = new Button("");
+
     }
         }
