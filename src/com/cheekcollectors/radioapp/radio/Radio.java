@@ -40,7 +40,7 @@ public class Radio {
         isOn = !isOn;
     }
 
-    private double getAmFrequency() {
+    public double getAmFrequency() {
         return amFrequency;
     }
 
@@ -48,7 +48,7 @@ public class Radio {
         this.amFrequency = amFrequency;
     }
 
-    private double getFmFrequency() {
+    public double getFmFrequency() {
         return fmFrequency;
     }
 
@@ -62,6 +62,11 @@ public class Radio {
 
     public void setFrequencyType(FrequencyType frequencyType) {
         this.frequencyType = frequencyType;
+    }
+
+    public void toggleFrequencyType() {
+        if (isOn())
+            frequencyType = getFrequencyType() == FrequencyType.AM ? FrequencyType.FM : FrequencyType.AM;
     }
 
     public double getFrequency() {
