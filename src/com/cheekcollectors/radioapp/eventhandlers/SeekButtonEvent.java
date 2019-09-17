@@ -6,11 +6,11 @@ import com.cheekcollectors.radioapp.radio.SeekDirection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class SeekButtonActionEvent implements EventHandler<ActionEvent> {
+public class SeekButtonEvent implements EventHandler<ActionEvent> {
 
     private SeekDirection seek; //creates new private seek
 
-    public SeekButtonActionEvent(SeekDirection seek) {
+    public SeekButtonEvent(SeekDirection seek) {
         this.seek = seek;
     }
 
