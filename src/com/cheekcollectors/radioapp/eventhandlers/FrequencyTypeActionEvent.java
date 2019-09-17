@@ -1,6 +1,8 @@
-package com.cheekcollectors.radioapp.radio;
+package com.cheekcollectors.radioapp.eventhandlers;
 
 import com.cheekcollectors.radioapp.RadioAppGUI;
+import com.cheekcollectors.radioapp.radio.FrequencyType;
+import com.cheekcollectors.radioapp.radio.Radio;
 
 import java.awt.event.ActionEvent;
 

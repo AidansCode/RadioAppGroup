@@ -1,5 +1,7 @@
 package com.cheekcollectors.radioapp;
 
+import com.cheekcollectors.radioapp.eventhandlers.SetSelectFavoriteEvent;
+import com.cheekcollectors.radioapp.nodes.FavoriteButton;
 import com.cheekcollectors.radioapp.radio.Radio;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,36 +13,50 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RadioAppGUI extends Application {
+
     private static final String APP_TITLE = "Radio Application";
     private static Radio radio;
     private static TextField statusPane;
+    private static FavoriteMode favoriteMode;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public static Radio getRadio(){
+    public static Radio getRadio() {
         return radio;
     }
 
-    public static void updateStatus(String status){
+    public static void updateStatus(String status) {
         statusPane.setText(status);
     }
 
+    public static FavoriteMode getFavoriteMode() {
+        return favoriteMode;
+    }
+
+    public static void setFavoriteMode(FavoriteMode favoriteMode) {
+        RadioAppGUI.favoriteMode = favoriteMode;
+    }
+
     public void start(Stage primaryStage) throws Exception {
-    //radio = DataStorageManager.readData();
-    if (radio == null)
-        radio = new Radio();
-    initLayout(primaryStage);
-    primaryStage.show();
-            }
-            public void stop() throws Exception {
+        //radio = DataStorageManager.readData();
+        if (radio == null)
+            radio = new Radio();
+
+        favoriteMode = FavoriteMode.SET;
+
+        initLayout(primaryStage);
+        primaryStage.show();
+    }
+
+    public void stop() throws Exception {
         //super.stop;
 
-       // DataStorageManager.saveData(radio);
-            }
+        // DataStorageManager.saveData(radio);
+    }
 
-            private void initLayout(Stage primaryStage){
+    private void initLayout(Stage primaryStage) {
         VBox topMenu = new VBox();
         topMenu.setSpacing(25);
         topMenu.setAlignment(Pos.CENTER);
@@ -61,8 +77,16 @@ public class RadioAppGUI extends Application {
 
         Button amFmButton = new Button("AM/FM");
         Button setToggleButton = new Button("SET");
-        Button seekBackButton = new Button("<<"); Button seekForwardButton = new Button(">>");
+        Button seekBackButton = new Button("<<");
+        Button seekForwardButton = new Button(">>");
         Button powerButton = new Button("");
 
-    }
+        FavoriteButton[] favoriteButtons = new FavoriteButton[6];
+        for (int i = 0; i < 6; i++) {
+            favoriteButtons[i] = new FavoriteButton(Integer.toString(i + 1), i);
+            favoriteButtons[i].setOnMouseClicked(new SetSelectFavoriteEvent());
         }
+
+    }
+
+}
