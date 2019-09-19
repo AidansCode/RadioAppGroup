@@ -1,5 +1,7 @@
 package com.cheekcollectors.radioapp.fileio;
 
+import com.cheekcollectors.radioapp.FavoriteMode;
+import com.cheekcollectors.radioapp.RadioAppGUI;
 import com.cheekcollectors.radioapp.radio.FrequencyType;
 import com.cheekcollectors.radioapp.radio.Radio;
 import com.cheekcollectors.radioapp.radio.RadioStation;
@@ -16,12 +18,14 @@ public class RadioDataManager {
         double amFrequency = radio.getAmFrequency(), fmFrequency = radio.getFmFrequency();
         FrequencyType frequencyType = radio.getFrequencyType();
         RadioStation[] favorites = radio.getFavorites();
+        FavoriteMode favoriteMode = RadioAppGUI.getFavoriteMode();
 
         DecimalFormat format = new DecimalFormat("0.0");
 
         try {
             PrintWriter printWriter = new PrintWriter("radio.txt");
             printWriter.write(Boolean.toString(isOn) + System.lineSeparator());
+            printWriter.write(favoriteMode.toString() + System.lineSeparator());
             printWriter.write(format.format(amFrequency) + System.lineSeparator());
             printWriter.write(format.format(fmFrequency) + System.lineSeparator());
             printWriter.write(frequencyType.toString() + System.lineSeparator());
@@ -44,9 +48,11 @@ public class RadioDataManager {
             boolean isOn;
             double amFrequency, fmFrequency;
             FrequencyType frequencyType;
+            FavoriteMode favoriteMode;
             RadioStation[] favorites = new RadioStation[6];
 
             isOn = Boolean.parseBoolean(br.readLine());
+            favoriteMode = FavoriteMode.valueOf(br.readLine());
             amFrequency = Double.parseDouble(br.readLine());
             fmFrequency = Double.parseDouble(br.readLine());
             frequencyType = FrequencyType.valueOf(br.readLine());
@@ -63,6 +69,7 @@ public class RadioDataManager {
                 }
             }
 
+            RadioAppGUI.setFavoriteMode(favoriteMode);
             return new Radio(isOn, amFrequency, fmFrequency, frequencyType, favorites);
         } catch (Exception e) {
             return null;

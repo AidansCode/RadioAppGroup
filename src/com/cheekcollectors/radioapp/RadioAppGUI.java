@@ -1,6 +1,7 @@
 package com.cheekcollectors.radioapp;
 
 import com.cheekcollectors.radioapp.eventhandlers.SetSelectFavoriteEvent;
+import com.cheekcollectors.radioapp.fileio.RadioDataManager;
 import com.cheekcollectors.radioapp.nodes.FavoriteButton;
 import com.cheekcollectors.radioapp.radio.Radio;
 import javafx.application.Application;
@@ -40,20 +41,20 @@ public class RadioAppGUI extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        //radio = DataStorageManager.readData();
-        if (radio == null)
+        radio = RadioDataManager.readData();
+        if (radio == null) {
             radio = new Radio();
-
-        favoriteMode = FavoriteMode.SET;
+            favoriteMode = FavoriteMode.SET;
+        }
 
         initLayout(primaryStage);
         primaryStage.show();
     }
 
+    @Override
     public void stop() throws Exception {
-        //super.stop;
-
-        // DataStorageManager.saveData(radio);
+        super.stop();
+        RadioDataManager.saveData(radio);
     }
 
     private void initLayout(Stage primaryStage) {

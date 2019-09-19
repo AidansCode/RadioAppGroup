@@ -6,6 +6,7 @@ import com.cheekcollectors.radioapp.radio.Radio;
 import javafx.event.ActionEvent;
 
 public class FrequencyTypeEvent {
+
     private FrequencyType frequencyType;
 
     public FrequencyTypeEvent(FrequencyType frequencyType) {
@@ -18,4 +19,5 @@ public class FrequencyTypeEvent {
         radio.setFrequencyType(frequencyType);
         RadioAppGUI.updateStatus(radio.getStatusString());
     }
+
 }

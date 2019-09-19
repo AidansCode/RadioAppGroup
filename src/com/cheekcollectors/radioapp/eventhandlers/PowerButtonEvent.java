@@ -9,6 +9,7 @@ public class PowerButtonEvent implements EventHandler<ActionEvent> {
 
     public void handle(ActionEvent actionEvent){
         Radio radio = RadioAppGUI.getRadio();
+
         radio.togglePower();
         RadioAppGUI.updateStatus(radio.getStatusString());
     }
