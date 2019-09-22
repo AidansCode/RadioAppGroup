@@ -289,7 +289,7 @@ public class Radio {
         double[] frequencyRange = getFrequencyRange(frequencyType);
 
         //return frequency is outside range set by FrequencyType
-        return (frequency > frequencyRange[1] || frequency < frequencyRange[0]);
+        return (frequency <= frequencyRange[1] && frequency >= frequencyRange[0]);
     }
 
     /**
