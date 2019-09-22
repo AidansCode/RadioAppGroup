@@ -1,5 +1,6 @@
 package com.cheekcollectors.radioapp;
 
+import com.cheekcollectors.radioapp.eventhandlers.FrequencyTypeEvent;
 import com.cheekcollectors.radioapp.eventhandlers.PowerButtonEvent;
 import com.cheekcollectors.radioapp.eventhandlers.SeekButtonEvent;
 import com.cheekcollectors.radioapp.eventhandlers.SetSelectFavoriteEvent;
@@ -93,13 +94,13 @@ public class RadioAppGUI extends Application {
             favoriteButtons[i].setOnMouseClicked(new SetSelectFavoriteEvent());
         }
 
-        //TODO amFmButton.setOnAction(new FrequencyTypeEvent());
+        amFmButton.setOnAction(new FrequencyTypeEvent());
 
         seekBackButton.setOnAction(new SeekButtonEvent(SeekDirection.DOWN));
         seekForwardButton.setOnAction(new SeekButtonEvent(SeekDirection.UP));
 
         powerButton.setPrefSize(30, 30);
-        //TODO powerButton.setStyle("-fx-background-image: url('resources/power.png'); -fx-background-size: 20px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
+        powerButton.setStyle("-fx-background-image: url('resources/power.png'); -fx-background-size: 20px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
         powerButton.setOnAction(new PowerButtonEvent());
 
         statusPane = new TextField(radio.getStatusString());
