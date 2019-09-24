@@ -15,6 +15,9 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         Radio radio = RadioAppGUI.getRadio();
+        if (!radio.isOn())
+            return;
+
         if (event.getSource() instanceof FavoriteButton ) {
             FavoriteButton button = (FavoriteButton) event.getSource();
             MouseButton mouseButton = event.getButton();
@@ -32,9 +35,9 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
 
     private static void unselectFavoriteEvent(Radio radio, int position) {
         if (!radio.hasFavoriteAtPosition(position))
-            Utilities.showUserAlert("There is no favorite at position " + position + "!");
+            Utilities.showUserAlert("There is no favorite at position " + (position+1) + "!");
         else {
-            boolean shouldRemove = Utilities.getUserConfirmation("Are you sure you want to remove the favorite at position " + position + "!");
+            boolean shouldRemove = Utilities.getUserConfirmation("Are you sure you want to remove the favorite at position " + (position+1) + "!");
             if (shouldRemove)
                 radio.unsetFavorite(position);
         }
@@ -45,7 +48,7 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
             Utilities.showUserAlert("There is already a favorite at this position! Remove it to change.");
         else {
             radio.setFavorite(radio.getCurrentStation(), position);
-            Utilities.showUserAlert("You have set the current station to favorite number " + position + "!");
+            Utilities.showUserAlert("You have set the current station to favorite number " + (position+1) + "!");
         }
     }
 
