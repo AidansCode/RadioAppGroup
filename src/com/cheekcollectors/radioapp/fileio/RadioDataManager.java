@@ -13,6 +13,10 @@ import java.text.DecimalFormat;
 
 public class RadioDataManager {
 
+    /**
+     * Gather all information about the current radio/radio app and save data to a file
+     * @param radio The instance of the Radio class being used
+     */
     public static void saveData(Radio radio) {
         boolean isOn = radio.isOn();
         double amFrequency = radio.getAmFrequency(), fmFrequency = radio.getFmFrequency();
@@ -43,6 +47,11 @@ public class RadioDataManager {
 
     }
 
+    /**
+     * Read the data stored in the app's storage file from the last use of the program and initialize the radio with the stored data.
+     * If there is an exception or the data can not be found, returns null
+     * @return The initialized Radio instance with the saved data or null if file not found
+     */
     public static Radio readData() {
         try(BufferedReader br = new BufferedReader(new FileReader("radio.txt"))) {
             boolean isOn;

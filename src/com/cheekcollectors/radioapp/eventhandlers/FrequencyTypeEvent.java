@@ -7,6 +7,10 @@ import javafx.event.EventHandler;
 
 public class FrequencyTypeEvent implements EventHandler<ActionEvent> {
 
+    /**
+     * Receives the event for the FrequencyTypeEvent (when the frequency type is changed)
+     * @param actionEvent The ActionEvent for the FrequencyTypeEvent
+     */
     public void handle(ActionEvent actionEvent) {
         Radio radio = RadioAppGUI.getRadio();
 

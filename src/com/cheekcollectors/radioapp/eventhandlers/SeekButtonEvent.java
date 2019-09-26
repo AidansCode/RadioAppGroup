@@ -10,10 +10,18 @@ public class SeekButtonEvent implements EventHandler<ActionEvent> {
 
     private SeekDirection seek; //creates new private seek
 
+    /**
+     * Constructor of the class
+     * @param seek The SeekDirection for this event
+     */
     public SeekButtonEvent(SeekDirection seek) {
         this.seek = seek;
     }
 
+    /**
+     * Receives the event for the SeekButtonEvent
+     * @param event
+     */
     public void handle(ActionEvent event){
         Radio radio = RadioAppGUI.getRadio();
         if(seek == SeekDirection.UP){ /*if the seek Forward button is selected the

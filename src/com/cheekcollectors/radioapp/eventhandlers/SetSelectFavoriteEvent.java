@@ -12,6 +12,11 @@ import javafx.scene.input.MouseEvent;
 
 public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
 
+    /**
+     * Receives the SetSelectFavoriteEvent and decides which action should be taken (3 potential)
+     * Can be removing a favorite, setting a favorite, or selecting a favorite
+     * @param event The MouseEvent of the event
+     */
     @Override
     public void handle(MouseEvent event) {
         Radio radio = RadioAppGUI.getRadio();
@@ -33,6 +38,11 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
         }
     }
 
+    /**
+     * Executes the event in the case of a favorite being unselected
+     * @param radio The instance of the Radio class being used
+     * @param position The position of the favorite button that was clicked
+     */
     private static void unselectFavoriteEvent(Radio radio, int position) {
         if (!radio.hasFavoriteAtPosition(position))
             Utilities.showUserAlert("There is no favorite at position " + (position+1) + "!");
@@ -43,6 +53,11 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
         }
     }
 
+    /**
+     * Executes the event in the case of a favorite being set
+     * @param radio The instance of the Radio class being used
+     * @param position The position of the favorite button that was clicked
+     */
     private static void setFavoriteEvent(Radio radio, int position) {
         if (radio.hasFavoriteAtPosition(position))
             Utilities.showUserAlert("There is already a favorite at this position! Remove it to change.");
@@ -52,6 +67,11 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
         }
     }
 
+    /**
+     * Executes the event in the case of a favorite being selected
+     * @param radio The instance of the Radio class being used
+     * @param position The position of the favorite button that was clicked
+     */
     private static void selectFavoriteEvent(Radio radio, int position) {
         if (!radio.hasFavoriteAtPosition(position))
             Utilities.showUserAlert("Can not select favorite! There is no favorite at this position");

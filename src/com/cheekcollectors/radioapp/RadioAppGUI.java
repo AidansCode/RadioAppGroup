@@ -30,22 +30,43 @@ public class RadioAppGUI extends Application {
         launch(args);
     }
 
+    /**
+     * Returns the app's instance of the Radio class
+     * @return Radio The instance of the Radio being used
+     */
     public static Radio getRadio() {
         return radio;
     }
 
+    /**
+     * Updates the status box of the radio with a given string
+     * @param status The string to set the status to
+     */
     public static void updateStatus(String status) {
         statusPane.setText(status);
     }
 
+    /**
+     * Return the radio app's current FavoriteMode
+     * @return FavoriteMode The app's current FavoriteMode
+     */
     public static FavoriteMode getFavoriteMode() {
         return favoriteMode;
     }
 
+    /**
+     * Set the app's current favorite mode
+     * @param favoriteMode The new favorite mode of the app
+     */
     public static void setFavoriteMode(FavoriteMode favoriteMode) {
         RadioAppGUI.favoriteMode = favoriteMode;
     }
 
+    /**
+     * Initialize the JavaFX application
+     * @param primaryStage The primary Stage of the application
+     * @throws Exception
+     */
     public void start(Stage primaryStage) throws Exception {
         radio = RadioDataManager.readData();
         if (radio == null) {
@@ -57,12 +78,20 @@ public class RadioAppGUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Called when the JavaFX application is closed (program ending)
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();
         RadioDataManager.saveData(radio);
     }
 
+    /**
+     * Initialize the layout of the application
+     * @param primaryStage The primary Stage of the application
+     */
     private void initLayout(Stage primaryStage) {
         VBox topMenu = new VBox();
         topMenu.setSpacing(25);
