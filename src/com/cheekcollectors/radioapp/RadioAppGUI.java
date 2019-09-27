@@ -100,7 +100,7 @@ public class RadioAppGUI extends Application {
         seekForwardButton.setOnAction(new SeekButtonEvent(SeekDirection.UP));
 
         powerButton.setPrefSize(30, 30);
-        //TODO powerButton.setStyle("-fx-background-image: url('resources/power.png'); -fx-background-size: 20px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
+        powerButton.setStyle("-fx-background-image: url('resources/power.png'); -fx-background-size: 20px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
         powerButton.setOnAction(new PowerButtonEvent());
 
         statusPane = new TextField(radio.getStatusString());
