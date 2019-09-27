@@ -1,5 +1,6 @@
 package com.cheekcollectors.radioapp;
 
+import com.cheekcollectors.radioapp.eventhandlers.FrequencyTypeEvent;
 import com.cheekcollectors.radioapp.eventhandlers.PowerButtonEvent;
 import com.cheekcollectors.radioapp.eventhandlers.SeekButtonEvent;
 import com.cheekcollectors.radioapp.eventhandlers.SetSelectFavoriteEvent;
@@ -93,7 +94,7 @@ public class RadioAppGUI extends Application {
             favoriteButtons[i].setOnMouseClicked(new SetSelectFavoriteEvent());
         }
 
-        //TODO amFmButton.setOnAction(new FrequencyTypeEvent());
+        amFmButton.setOnAction(new FrequencyTypeEvent());
 
         seekBackButton.setOnAction(new SeekButtonEvent(SeekDirection.DOWN));
         seekForwardButton.setOnAction(new SeekButtonEvent(SeekDirection.UP));
@@ -107,7 +108,7 @@ public class RadioAppGUI extends Application {
         statusPane.setDisable(true);
         statusPane.setStyle("-fx-background-color: darkolivegreen; -fx-opacity: 1; -fx-text-fill: white");
 
-        frequencyTypeMenu.getChildren().addAll(amFmButton);
+        frequencyTypeMenu.getChildren().addAll(amFmButton, setToggleButton);
         topMenu.getChildren().addAll(powerButton, frequencyTypeMenu);
         middleMenu.getChildren().addAll(seekBackButton, statusPane, seekForwardButton);
         bottomMenu.getChildren().addAll(favoriteButtons);

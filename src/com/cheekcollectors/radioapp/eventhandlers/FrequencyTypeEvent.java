@@ -1,23 +1,19 @@
 package com.cheekcollectors.radioapp.eventhandlers;
 
 import com.cheekcollectors.radioapp.RadioAppGUI;
-import com.cheekcollectors.radioapp.radio.FrequencyType;
 import com.cheekcollectors.radioapp.radio.Radio;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
-public class FrequencyTypeEvent {
+public class FrequencyTypeEvent implements EventHandler<ActionEvent> {
 
-    private FrequencyType frequencyType;
-
-    public FrequencyTypeEvent(FrequencyType frequencyType) {
-        this.frequencyType = frequencyType;
-    }
 
     public void handle(ActionEvent actionEvent) {
         Radio radio = RadioAppGUI.getRadio();
 
-        radio.setFrequencyType(frequencyType);
+        radio.toggleFrequencyType();
         RadioAppGUI.updateStatus(radio.getStatusString());
     }
+
 
 }
