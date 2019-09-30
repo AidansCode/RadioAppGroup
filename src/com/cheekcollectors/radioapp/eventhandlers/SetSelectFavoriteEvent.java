@@ -63,7 +63,8 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
             Utilities.showUserAlert("There is already a favorite at this position! Remove it to change.");
         else {
             radio.setFavorite(radio.getCurrentStation(), position);
-            Utilities.showUserAlert("You have set the current station to favorite number " + (position+1) + "!");
+            Utilities.showUserAlert("You have set the current station to favorite number " + (position+1) + "!\n" +
+                    "To remove this favorite, right click on the " +(position+1) +" button");
         }
     }
 
