@@ -75,7 +75,7 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
      */
     private static void selectFavoriteEvent(Radio radio, int position) {
         if (!radio.hasFavoriteAtPosition(position))
-            Utilities.showUserAlert("Can not select favorite! There is no favorite at this position");
+            Utilities.showUserAlert("Can not select favorite! There is no favorite at this  position");
         else {
             radio.setFrequency(radio.getFavorite(position));
         }
