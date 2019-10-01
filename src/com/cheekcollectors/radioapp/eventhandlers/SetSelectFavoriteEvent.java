@@ -35,6 +35,8 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
                 setFavoriteEvent(radio, position);
             else if (favoriteMode == FavoriteMode.SELECT)
                 selectFavoriteEvent(radio, position);
+
+            RadioAppGUI.updateDisplay();
         }
     }
 

@@ -1,9 +1,6 @@
 package com.cheekcollectors.radioapp;
 
-import com.cheekcollectors.radioapp.eventhandlers.FrequencyTypeEvent;
-import com.cheekcollectors.radioapp.eventhandlers.PowerButtonEvent;
-import com.cheekcollectors.radioapp.eventhandlers.SeekButtonEvent;
-import com.cheekcollectors.radioapp.eventhandlers.SetSelectFavoriteEvent;
+import com.cheekcollectors.radioapp.eventhandlers.*;
 import com.cheekcollectors.radioapp.fileio.RadioDataManager;
 import com.cheekcollectors.radioapp.nodes.FavoriteButton;
 import com.cheekcollectors.radioapp.radio.Radio;
@@ -24,6 +21,7 @@ public class RadioAppGUI extends Application {
     private static final String APP_TITLE = "Radio Application";
     private static Radio radio;
     private static TextField statusPane;
+    private static Button setSelectToggleButton;
     private static FavoriteMode favoriteMode;
 
     public static void main(String[] args) {
@@ -34,8 +32,10 @@ public class RadioAppGUI extends Application {
         return radio;
     }
 
-    public static void updateStatus(String status) {
-        statusPane.setText(status);
+    public static void updateDisplay() {
+        statusPane.setText(radio.getStatusString());
+
+        setSelectToggleButton.setText(favoriteMode.toString());
     }
 
     public static FavoriteMode getFavoriteMode() {
@@ -83,7 +83,7 @@ public class RadioAppGUI extends Application {
         bottomMenu.setPadding(new Insets(25, 0, 25, 0));
 
         Button amFmButton = new Button("AM/FM");
-        Button setToggleButton = new Button("SET");
+        setSelectToggleButton = new Button(getFavoriteMode().toString());
         Button seekBackButton = new Button("<<");
         Button seekForwardButton = new Button(">>");
         Button powerButton = new Button("");
@@ -95,7 +95,7 @@ public class RadioAppGUI extends Application {
         }
 
         amFmButton.setOnAction(new FrequencyTypeEvent());
-
+        setSelectToggleButton.setOnAction(new SetSelectToggleEvent());
         seekBackButton.setOnAction(new SeekButtonEvent(SeekDirection.DOWN));
         seekForwardButton.setOnAction(new SeekButtonEvent(SeekDirection.UP));
 
@@ -108,7 +108,7 @@ public class RadioAppGUI extends Application {
         statusPane.setDisable(true);
         statusPane.setStyle("-fx-background-color: darkolivegreen; -fx-opacity: 1; -fx-text-fill: white");
 
-        frequencyTypeMenu.getChildren().addAll(amFmButton, setToggleButton);
+        frequencyTypeMenu.getChildren().addAll(amFmButton, setSelectToggleButton);
         topMenu.getChildren().addAll(powerButton, frequencyTypeMenu);
         middleMenu.getChildren().addAll(seekBackButton, statusPane, seekForwardButton);
         bottomMenu.getChildren().addAll(favoriteButtons);
@@ -124,7 +124,6 @@ public class RadioAppGUI extends Application {
         primaryStage.setResizable(false);
 
         mainLayout.requestFocus();
-
     }
 
 }

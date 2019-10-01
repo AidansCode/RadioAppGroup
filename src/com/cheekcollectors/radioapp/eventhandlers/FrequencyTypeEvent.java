@@ -12,7 +12,7 @@ public class FrequencyTypeEvent implements EventHandler<ActionEvent> {
         Radio radio = RadioAppGUI.getRadio();
 
         radio.toggleFrequencyType();
-        RadioAppGUI.updateStatus(radio.getStatusString());
+        RadioAppGUI.updateDisplay();
     }
 
 

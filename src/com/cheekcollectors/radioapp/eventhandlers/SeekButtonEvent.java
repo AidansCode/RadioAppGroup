@@ -33,7 +33,7 @@ public class SeekButtonEvent implements EventHandler<ActionEvent> {
             and 10 if am is selected*/
             radio.seekBack();
         }
-        RadioAppGUI.updateStatus(radio.getStatusString()); //this line updates the status of the button
+        RadioAppGUI.updateDisplay();
     }
 
 }
