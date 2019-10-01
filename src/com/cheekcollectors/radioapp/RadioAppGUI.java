@@ -21,7 +21,7 @@ public class RadioAppGUI extends Application {
     private static final String APP_TITLE = "Radio Application";
     private static Radio radio;
     private static TextField statusPane;
-    private static Button setSelectToggleButton;
+    private static Button setSelectToggleButton, amFmButton;
     private static FavoriteMode favoriteMode;
 
     public static void main(String[] args) {
@@ -36,6 +36,7 @@ public class RadioAppGUI extends Application {
         statusPane.setText(radio.getStatusString());
 
         setSelectToggleButton.setText(favoriteMode.toString());
+        amFmButton.setText(radio.getFrequencyType().toString());
     }
 
     public static FavoriteMode getFavoriteMode() {
@@ -82,7 +83,7 @@ public class RadioAppGUI extends Application {
         bottomMenu.setAlignment(Pos.CENTER);
         bottomMenu.setPadding(new Insets(25, 0, 25, 0));
 
-        Button amFmButton = new Button("AM/FM");
+        amFmButton = new Button(radio.getFrequencyType().toString());
         setSelectToggleButton = new Button(getFavoriteMode().toString());
         Button seekBackButton = new Button("<<");
         Button seekForwardButton = new Button(">>");
