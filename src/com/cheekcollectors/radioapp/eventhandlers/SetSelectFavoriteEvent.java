@@ -5,12 +5,11 @@ import com.cheekcollectors.radioapp.RadioAppGUI;
 import com.cheekcollectors.radioapp.nodes.FavoriteButton;
 import com.cheekcollectors.radioapp.radio.Radio;
 import com.cheekcollectors.radioapp.utils.Utilities;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 
 
-public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
+public class SetSelectFavoriteEvent implements EventHandler<ActionEvent> {
 
     /**
      * Receives the SetSelectFavoriteEvent and decides which action should be taken (3 potential)
@@ -18,20 +17,16 @@ public class SetSelectFavoriteEvent implements EventHandler<MouseEvent> {
      * @param event The MouseEvent of the event
      */
     @Override
-    public void handle(MouseEvent event) {
+    public void handle(ActionEvent event) {
         Radio radio = RadioAppGUI.getRadio();
         if (!radio.isOn())
             return;
 
         if (event.getSource() instanceof FavoriteButton ) {
             FavoriteButton button = (FavoriteButton) event.getSource();
-            MouseButton mouseButton = event.getButton();
             FavoriteMode favoriteMode = RadioAppGUI.getFavoriteMode();
             int position = button.getPosition();
-
-            if (mouseButton == MouseButton.SECONDARY)
-                unselectFavoriteEvent(radio, position);
-            else if (favoriteMode == FavoriteMode.SET)
+            if (favoriteMode == FavoriteMode.SET)
                 setFavoriteEvent(radio, position);
             else if (favoriteMode == FavoriteMode.SELECT)
                 selectFavoriteEvent(radio, position);
