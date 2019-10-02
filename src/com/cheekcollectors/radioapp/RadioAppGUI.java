@@ -65,10 +65,10 @@ public class RadioAppGUI extends Application {
     }
 
     private void initLayout(Stage primaryStage) {
-        VBox topMenu = new VBox();
+        HBox topMenu = new HBox();
         topMenu.setSpacing(25);
         topMenu.setAlignment(Pos.CENTER);
-        topMenu.setPadding(new Insets(15, 0, 25, 0));
+        topMenu.setPadding(new Insets(15, 0, 15, 0));
 
         HBox frequencyTypeMenu = new HBox();
         frequencyTypeMenu.setSpacing(25);
@@ -81,13 +81,15 @@ public class RadioAppGUI extends Application {
         HBox bottomMenu = new HBox();
         bottomMenu.setSpacing(20);
         bottomMenu.setAlignment(Pos.CENTER);
-        bottomMenu.setPadding(new Insets(25, 0, 25, 0));
+        bottomMenu.setPadding(new Insets(15, 0, 25, 0));
 
         amFmButton = new Button(radio.getFrequencyType().toString());
         setSelectToggleButton = new Button(getFavoriteMode().toString());
         Button seekBackButton = new Button("<<");
         Button seekForwardButton = new Button(">>");
         Button powerButton = new Button("");
+        amFmButton.setPrefSize(50, 30);
+        setSelectToggleButton.setPrefSize(100, 30);
 
         FavoriteButton[] favoriteButtons = new FavoriteButton[6];
         for (int i = 0; i < 6; i++) {
@@ -119,7 +121,7 @@ public class RadioAppGUI extends Application {
         mainLayout.setCenter(middleMenu);
         mainLayout.setBottom(bottomMenu);
 
-        Scene scene = new Scene(mainLayout, 500, 220);
+        Scene scene = new Scene(mainLayout, 400, 150);
         primaryStage.setTitle(APP_TITLE);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
