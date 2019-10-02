@@ -56,13 +56,21 @@ public class SetSelectFavoriteEvent implements EventHandler<ActionEvent> {
      * @param position The position of the favorite button that was clicked
      */
     private static void setFavoriteEvent(Radio radio, int position) {
-        if (radio.hasFavoriteAtPosition(position))
-            Utilities.showUserAlert("There is already a favorite at this position! Remove it to change.");
-        else {
-            radio.setFavorite(radio.getCurrentStation(), position);
-            Utilities.showUserAlert("You have set the current station to favorite number " + (position+1) + "!\n" +
-                    "To remove this favorite, right click on the " +(position+1) +" button");
+        if (radio.hasFavoriteAtPosition(position)) {
+            boolean shouldRemove = Utilities.getUserConfirmation("Are you sure you want to replace the favorite at position " + (position + 1) + "!");
+            if (shouldRemove) {
+                radio.unsetFavorite(position);
+                setFavorite(radio, position);
+            }
         }
+        else {
+            setFavorite(radio, position);
+        }
+    }
+
+    private static void setFavorite(Radio radio, int position) {
+        radio.setFavorite(radio.getCurrentStation(), position);
+        Utilities.showUserAlert("You have set the current station to favorite number " + (position + 1));
     }
 
     /**

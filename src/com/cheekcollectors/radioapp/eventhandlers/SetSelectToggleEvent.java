@@ -17,5 +17,6 @@ public class SetSelectToggleEvent implements EventHandler<ActionEvent> {
         else if (RadioAppGUI.getFavoriteMode() == FavoriteMode.SELECT){
             RadioAppGUI.setFavoriteMode(FavoriteMode.SET);
         }
+        RadioAppGUI.updateDisplay();
     }
 }

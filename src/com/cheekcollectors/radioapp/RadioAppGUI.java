@@ -92,7 +92,7 @@ public class RadioAppGUI extends Application {
         FavoriteButton[] favoriteButtons = new FavoriteButton[6];
         for (int i = 0; i < 6; i++) {
             favoriteButtons[i] = new FavoriteButton(Integer.toString(i + 1), i);
-            favoriteButtons[i].setOnMouseClicked(new SetSelectFavoriteEvent());
+            favoriteButtons[i].setOnAction(new SetSelectFavoriteEvent());
         }
 
         amFmButton.setOnAction(new FrequencyTypeEvent());
