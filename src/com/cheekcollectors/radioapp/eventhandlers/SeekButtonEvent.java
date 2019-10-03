@@ -1,3 +1,11 @@
+/*************************************************************************
+ * CSC - 223 Fall 2019
+ * @author - checkcollectors
+ * Date : 10/3
+ * PROJECT #2 Radio
+ * Class Description:
+ *************************************************************************/
+
 package com.cheekcollectors.radioapp.eventhandlers;
 
 import com.cheekcollectors.radioapp.RadioAppGUI;

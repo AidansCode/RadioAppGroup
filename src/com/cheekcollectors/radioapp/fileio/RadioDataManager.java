@@ -1,3 +1,12 @@
+/*************************************************************************
+ * CSC - 223 Fall 2019
+ * @author - checkcollectors
+ * Date : 10/3
+ * PROJECT #2 Radio
+ * Class Description: Manages I/O for radio.
+ *************************************************************************/
+
+
 package com.cheekcollectors.radioapp.fileio;
 
 import com.cheekcollectors.radioapp.FavoriteMode;

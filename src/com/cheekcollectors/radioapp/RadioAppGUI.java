@@ -1,3 +1,11 @@
+/*************************************************************************
+ * CSC - 223 Fall 2019
+ * @author - checkcollectors
+ * Date : 10/3
+ * PROJECT #2 Radio
+ * Class Description: Launches GUI for Radio App
+ *************************************************************************/
+
 package com.cheekcollectors.radioapp;
 
 import com.cheekcollectors.radioapp.eventhandlers.*;
@@ -13,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class RadioAppGUI extends Application {
@@ -93,7 +100,8 @@ public class RadioAppGUI extends Application {
 
         FavoriteButton[] favoriteButtons = new FavoriteButton[6];
         for (int i = 0; i < 6; i++) {
-            favoriteButtons[i] = new FavoriteButton(Integer.toString(i + 1), i);
+            favoriteButtons[i] = new FavoriteButton(Integer.toString(i + 1), 
+                    i);
             favoriteButtons[i].setOnAction(new SetSelectFavoriteEvent());
         }
 
@@ -103,17 +111,24 @@ public class RadioAppGUI extends Application {
         seekForwardButton.setOnAction(new SeekButtonEvent(SeekDirection.UP));
 
         powerButton.setPrefSize(30, 30);
-        powerButton.setStyle("-fx-background-image: url('resources/power.png'); -fx-background-size: 20px; -fx-background-repeat: no-repeat; -fx-background-position: center;");
+        powerButton.setStyle("-fx-background-image: "
+                + "url('resources/power.png'); -fx-background-size: 20px; "
+                + "-fx-background-repeat: no-repeat; -fx-background-position: "
+                + "center;");
         powerButton.setOnAction(new PowerButtonEvent());
 
         statusPane = new TextField(radio.getStatusString());
         statusPane.setAlignment(Pos.CENTER);
         statusPane.setDisable(true);
-        statusPane.setStyle("-fx-background-color: darkolivegreen; -fx-opacity: 1; -fx-text-fill: white");
+        statusPane.setStyle("-fx-background-color: "
+                + "darkolivegreen; -fx-opacity: 1; "
+                + "-fx-text-fill: white");
 
-        frequencyTypeMenu.getChildren().addAll(amFmButton, setSelectToggleButton);
+        frequencyTypeMenu.getChildren().addAll(amFmButton, 
+                setSelectToggleButton);
         topMenu.getChildren().addAll(powerButton, frequencyTypeMenu);
-        middleMenu.getChildren().addAll(seekBackButton, statusPane, seekForwardButton);
+        middleMenu.getChildren().addAll(seekBackButton, statusPane, 
+                seekForwardButton);
         bottomMenu.getChildren().addAll(favoriteButtons);
 
         BorderPane mainLayout = new BorderPane();

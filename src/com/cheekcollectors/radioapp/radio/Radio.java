@@ -1,3 +1,15 @@
+/*************************************************************************
+ * CSC - 223 Fall 2019
+ * @author - checkcollectors
+ * Date : 10/3
+ * PROJECT #2 Radio
+ * Class Description: Radio simulates a car radio. It has an on and off state, 
+ * can be tuned to either AM or FM, and accurately increments and decrements 
+ * to the defined frequency ranges. There are 6 favorite buttons, that can save
+ * and load a user defined frequency. 
+ * 
+ *************************************************************************/
+
 package com.cheekcollectors.radioapp.radio;
 
 import java.text.DecimalFormat;
@@ -27,7 +39,7 @@ public class Radio {
      * @param amFrequency double Starting AM frequency
      * @param fmFrequency double Starting FM frequency
      * @param frequencyType FrequencyType Last set frequency type
-     * @param favorites Aray of 6 favorite radio stations, individual elements can be null
+     * @param favorites Array of 6 favorite radio stations, individual elements can be null
      */
     public Radio(boolean isOn, double amFrequency, double fmFrequency, FrequencyType frequencyType, RadioStation[] favorites) {
         this.isOn = isOn;
@@ -51,8 +63,8 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Returns whether or not the radio is on
-     *
      * @return boolean Whether or not the radio is on
      */
     public boolean isOn() {
@@ -60,8 +72,8 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Sets whether or not the radio is on
-     *
      * @param on boolean Whether or not the radio should be on
      */
     public void setOn(boolean on) {
@@ -69,6 +81,7 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Toggles the power of the radio (off -> on, on -> off)
      */
     public void togglePower() {
@@ -76,8 +89,8 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Get the last set AM frequency
-     *
      * @return double The last set AM frequency
      */
     public double getAmFrequency() {
@@ -86,8 +99,8 @@ public class Radio {
 
 
     /**
+     * MUTATOR
      * Set the current AM frequency
-     *
      * @param amFrequency double The new AM frequency value
      */
     private void setAmFrequency(double amFrequency) {
@@ -96,8 +109,8 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Get the last set FM frequency
-     *
      * @return double The new FM frequency value
      */
     public double getFmFrequency() {
@@ -105,8 +118,8 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Set the current FM frequency
-     *
      * @param fmFrequency double The new FM frequency value
      */
     private void setFmFrequency(double fmFrequency) {
@@ -114,8 +127,8 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Get the current FrequencyType
-     *
      * @return FrequencyType The current FrequencyType
      */
     public FrequencyType getFrequencyType() {
@@ -123,8 +136,8 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Set the current FrequencyType
-     *
      * @param frequencyType FrequencyType The new FrequencyType
      */
     public void setFrequencyType(FrequencyType frequencyType) {
@@ -132,14 +145,17 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Toggles between the current frequency type (AM -> FM, FM -> AM)
      */
     public void toggleFrequencyType() {
         if (isOn())
-            frequencyType = getFrequencyType() == FrequencyType.AM ? FrequencyType.FM : FrequencyType.AM;
+            frequencyType = getFrequencyType() == FrequencyType.AM ? 
+                    FrequencyType.FM : FrequencyType.AM;
     }
 
     /**
+     * ACCESSOR
      * Get the current frequency of the radio
      *
      * @return double The current frequency of the radio
@@ -149,8 +165,8 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Set the current frequency of the radio
-     *
      * @param frequencyType FrequencyType The new FrequencyType of the radio
      * @param frequency double The new frequency of the radio
      */
@@ -166,22 +182,26 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Set the current frequency of the radio
-     *
      * @param radioStation RadioStation The new radio station of the radio
      */
     public void setFrequency(RadioStation radioStation) {
-        setFrequency(radioStation.getFrequencyType(), radioStation.getFrequency());
+        setFrequency(radioStation.getFrequencyType(), 
+                radioStation.getFrequency());
     }
 
     /**
-     * Move forward delta stations from the current station (AM: n + 10, FM: n + .2)
+     * MUTATOR
+     * Move forward delta stations from the current station 
+     * (AM: n + 10, FM: n + .2)
      */
     public void seekForward() {
         if (isOn()) {
             FrequencyType frequencyType = getFrequencyType();
 
-            double newFrequency = getFrequency() + getFrequencyDelta(frequencyType);
+            double newFrequency = getFrequency() 
+                    + getFrequencyDelta(frequencyType);
             if (!isValidFrequency(frequencyType, newFrequency))
                 newFrequency = getFrequencyRange(frequencyType)[0];
 
@@ -190,13 +210,16 @@ public class Radio {
     }
 
     /**
-     * Move back delta stations from the current station (AM: n - 10, FM: n - .2)
+     * MUTATOR
+     * Move back delta stations from the current station 
+     * (AM: n - 10, FM: n - .2)
      */
     public void seekBack() {
         if (isOn()) {
             FrequencyType frequencyType = getFrequencyType();
 
-            double newFrequency = getFrequency() - getFrequencyDelta(frequencyType);
+            double newFrequency = getFrequency() 
+                    - getFrequencyDelta(frequencyType);
             if (!isValidFrequency(frequencyType, newFrequency))
                 newFrequency = getFrequencyRange(frequencyType)[1];
 
@@ -205,8 +228,9 @@ public class Radio {
     }
 
     /**
-     * Get the current frequency/frequency type of the radio as a RadioStation object
-     *
+     * ACCESSOR
+     * Get the current frequency/frequency type of the radio as a 
+     * RadioStation object
      * @return RadioStation The current radio station the radio is on
      */
     public RadioStation getCurrentStation() {
@@ -214,27 +238,29 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Return the radio station at the specified favorite position
-     *
      * @param position int The favorite number to check
-     * @return RadioStation The radio station set to the specified favorite position
+     * @return RadioStation The radio station set to the specified 
+     * favorite position
      */
     public RadioStation getFavorite(int position) {
         return favorites[position];
     }
 
     /**
+     * ACCESSOR
      * Return an array of all the favorites
-     *
-     * @return RadioStation[] An array of all the set favorites (elements may be null)
+     * @return RadioStation[] An array of all the set favorites 
+     * (elements may be null)
      */
     public RadioStation[] getFavorites() {
         return favorites;
     }
 
     /**
+     * MUTATOR
      * Set the specified radio station to a favorite at a specified position
-     *
      * @param radioStation The new favorite RadioStation
      * @param position The position of the new favorite
      */
@@ -244,8 +270,8 @@ public class Radio {
     }
 
     /**
+     * MUTATOR
      * Removes the favorite from the specified favorite position
-     *
      * @param position int The specified favorite position
      */
     public void unsetFavorite(int position) {
@@ -254,8 +280,8 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Returns whether or not there is a favorite at a certain position
-     *
      * @param position int The position (1-6) of the potential favorite
      * @return booelan Whether or not there is a favorite at the given position
      */
@@ -264,15 +290,16 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Returns the status of the radio as a string (ON/OFF Freq-Type Frequency)
-     *
      * @return The status of the radio as a string (ON/OFF Freq-Type Frequency)
      */
     public String getStatusString() {
         String result;
 
         if (isOn())
-            result = "ON " + getFrequencyType().toString() + " " + formatFrequency(getFrequencyType(), getFrequency());
+            result = "ON " + getFrequencyType().toString() + " " 
+                    + formatFrequency(getFrequencyType(), getFrequency());
         else
             result = "OFF";
 
@@ -280,24 +307,27 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Returns whether or not a given frequency is valid and in the type's range
-     *
      * @param frequencyType The FrequencyType of the station to test
      * @param frequency The frequency of the station to test
      * @return boolean Whether or not the given frequency is a valid station
      */
-    private static boolean isValidFrequency(FrequencyType frequencyType, double frequency) {
+    private static boolean isValidFrequency(FrequencyType frequencyType, 
+                           double frequency) {
         double[] frequencyRange = getFrequencyRange(frequencyType);
 
         //return frequency is outside range set by FrequencyType
-        return (frequency <= frequencyRange[1] && frequency >= frequencyRange[0]);
+        return (frequency <= frequencyRange[1] 
+                && frequency >= frequencyRange[0]);
     }
 
     /**
+     * ACCESSOR
      * Get the range of valid frequencies for a given frequency type
-     *
      * @param frequencyType The frequency type to get the range of
-     * @return Array An array with the range of the given frequency type ([0] = minimum frequency, [1] = maximum frequency)
+     * @return Array An array with the range of the given frequency 
+     * type ([0] = minimum frequency, [1] = maximum frequency)
      */
     public static double[] getFrequencyRange(FrequencyType frequencyType) {
         double[] result = new double[2];
@@ -313,10 +343,11 @@ public class Radio {
     }
 
     /**
+     * ACCESSOR
      * Get the delta between valid stations for a given frequency type
-     *
      * @param frequencyType The frequency type to get the delta of
-     * @return double The delta between frequencies for the given frequency type
+     * @return double The delta between frequencies for the given 
+     * frequency type
      */
     public static double getFrequencyDelta(FrequencyType frequencyType) {
         if (frequencyType == FrequencyType.AM)
@@ -326,13 +357,16 @@ public class Radio {
     }
 
     /**
-     * Format a given frequency into a string with the correct amount of decimals for the frequency's type
+     * MUTATOR
+     * Format a given frequency into a string with the correct amount of 
+     * decimals for the frequency's type
      *
      * @param frequencyType The FrequencyType of the station
      * @param frequency The frequency of the station
      * @return String The formatted frequency
      */
-    public static String formatFrequency(FrequencyType frequencyType, double frequency) {
+    public static String formatFrequency(FrequencyType frequencyType, 
+                                          double frequency) {
         DecimalFormat format;
         if (frequencyType == FrequencyType.AM)
             format = new DecimalFormat("0");
