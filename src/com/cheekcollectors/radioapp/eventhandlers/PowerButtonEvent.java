@@ -14,8 +14,8 @@ public class PowerButtonEvent implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent){
         Radio radio = RadioAppGUI.getRadio();
 
-        radio.togglePower();
-        RadioAppGUI.updateDisplay();
+        radio.togglePower(); //turns the radio on or off when clicked using the togglePower method
+        RadioAppGUI.updateDisplay(); //updtaes the radio's display
     }
 
 }

@@ -11,8 +11,8 @@ public class FrequencyTypeEvent implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         Radio radio = RadioAppGUI.getRadio();
 
-        radio.toggleFrequencyType();
-        RadioAppGUI.updateDisplay();
+        radio.toggleFrequencyType(); //uses the toggleFrequencyType method to change the radio frequency between am and fm
+        RadioAppGUI.updateDisplay(); //updates the radios display for the user to see.
     }
 
 

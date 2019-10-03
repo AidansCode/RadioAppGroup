@@ -8,7 +8,7 @@ import javafx.event.EventHandler;
 
 public class SeekButtonEvent implements EventHandler<ActionEvent> {
 
-    private SeekDirection seek; //creates new private seek
+    private SeekDirection seek; //creates new private SeekDirection variable called seek
 
     /**
      * Constructor of the class
@@ -33,7 +33,7 @@ public class SeekButtonEvent implements EventHandler<ActionEvent> {
             and 10 if am is selected*/
             radio.seekBack();
         }
-        RadioAppGUI.updateDisplay();
+        RadioAppGUI.updateDisplay(); //updates the radio's display for the user.
     }
 
 }
