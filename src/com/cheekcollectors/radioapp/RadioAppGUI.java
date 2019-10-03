@@ -31,14 +31,25 @@ public class RadioAppGUI extends Application {
     private static Button setSelectToggleButton, amFmButton;
     private static FavoriteMode favoriteMode;
 
+    /**
+     * Main method of the Java application
+     * @param args The arguments passed to the application at launch
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Returns the instance of the Radio class the application is using
+     * @return
+     */
     public static Radio getRadio() {
         return radio;
     }
 
+    /**
+     * Refreshes the display of the radio GUI. Call this after you change something
+     */
     public static void updateDisplay() {
         statusPane.setText(radio.getStatusString());
 
@@ -46,14 +57,27 @@ public class RadioAppGUI extends Application {
         amFmButton.setText(radio.getFrequencyType().toString());
     }
 
+    /**
+     * Return the current favorite mode of the application
+     * @return FavoriteMode The current favorite mode of the application
+     */
     public static FavoriteMode getFavoriteMode() {
         return favoriteMode;
     }
 
+    /**
+     * Set the current favorite mode of the application
+     * @param favoriteMode
+     */
     public static void setFavoriteMode(FavoriteMode favoriteMode) {
         RadioAppGUI.favoriteMode = favoriteMode;
     }
 
+    /**
+     * Launches the GUI of the application
+     * @param primaryStage The primary Stage to be used
+     * @throws Exception
+     */
     public void start(Stage primaryStage) throws Exception {
         radio = RadioDataManager.readData();
         if (radio == null) {
@@ -65,12 +89,20 @@ public class RadioAppGUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Called when the program is closing
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();
         RadioDataManager.saveData(radio);
     }
 
+    /**
+     * Initializes the layout of a given stage to use the radio GUI
+     * @param primaryStage The stage to be used for the GUI
+     */
     private void initLayout(Stage primaryStage) {
         HBox topMenu = new HBox();
         topMenu.setSpacing(25);

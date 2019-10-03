@@ -16,7 +16,7 @@ import javafx.event.EventHandler;
 
 public class SeekButtonEvent implements EventHandler<ActionEvent> {
 
-    private SeekDirection seek; //creates new private SeekDirection variable called seek
+    private SeekDirection seek;
 
     /**
      * Constructor of the class

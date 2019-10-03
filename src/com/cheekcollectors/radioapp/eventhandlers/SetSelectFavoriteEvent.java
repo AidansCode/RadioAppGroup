@@ -44,21 +44,6 @@ public class SetSelectFavoriteEvent implements EventHandler<ActionEvent> {
     }
 
     /**
-     * Executes the event in the case of a favorite being unselected
-     * @param radio The instance of the Radio class being used
-     * @param position The position of the favorite button that was clicked
-     */
-    private static void unselectFavoriteEvent(Radio radio, int position) {
-        if (!radio.hasFavoriteAtPosition(position))
-            Utilities.showUserAlert("There is no favorite at position " + (position+1) + "!");
-        else {
-            boolean shouldRemove = Utilities.getUserConfirmation("Are you sure you want to remove the favorite at position " + (position+1) + "!");
-            if (shouldRemove)
-                radio.unsetFavorite(position);
-        }
-    }
-
-    /**
      * Executes the event in the case of a favorite being set
      * @param radio The instance of the Radio class being used
      * @param position The position of the favorite button that was clicked
@@ -66,16 +51,18 @@ public class SetSelectFavoriteEvent implements EventHandler<ActionEvent> {
     private static void setFavoriteEvent(Radio radio, int position) {
         if (radio.hasFavoriteAtPosition(position)) {
             boolean shouldRemove = Utilities.getUserConfirmation("Are you sure you want to replace the favorite at position " + (position + 1) + "!");
-            if (shouldRemove) {
-                radio.unsetFavorite(position);
+            if (shouldRemove)
                 setFavorite(radio, position);
-            }
         }
-        else {
+        else
             setFavorite(radio, position);
-        }
     }
 
+    /**
+     * Handles the setting of a new favorite and alerts the user of the change
+     * @param radio The radio instance being used
+     * @param position The position of the new favorite
+     */
     private static void setFavorite(Radio radio, int position) {
         radio.setFavorite(radio.getCurrentStation(), position);
         Utilities.showUserAlert("You have set the current station to favorite number " + (position + 1));

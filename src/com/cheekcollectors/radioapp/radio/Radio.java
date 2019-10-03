@@ -24,6 +24,9 @@ public class Radio {
     private FrequencyType frequencyType;
     private RadioStation[] favorites;
 
+    /**
+     * Radio constructor
+     */
     public Radio() {
         isOn = false;
         frequencyType = FrequencyType.AM;

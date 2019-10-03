@@ -15,13 +15,15 @@ import javafx.event.EventHandler;
 
 public class FrequencyTypeEvent implements EventHandler<ActionEvent> {
 
-
+    /**
+     * Handles the action event called when the frequency type is changed
+     * @param actionEvent
+     */
     public void handle(ActionEvent actionEvent) {
         Radio radio = RadioAppGUI.getRadio();
 
         radio.toggleFrequencyType(); //change the radio frequency between am/fm
         RadioAppGUI.updateDisplay(); //updates the radios display for the user to see.
     }
-
 
 }
